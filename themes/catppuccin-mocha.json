@@ -1,0 +1,66 @@
+{
+  "name": "catppuccin-mocha",
+  "window": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "border": "#45475a"
+  },
+  "toolbar": {
+    "background": "#181825",
+    "foreground": "#cdd6f4",
+    "button_background": "#313244",
+    "button_hover": "#45475a",
+    "button_pressed": "#585b70",
+    "button_foreground": "#cdd6f4"
+  },
+  "table": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "row_even": "#1e1e2e",
+    "row_odd": "#181825",
+    "selected": "#45475a",
+    "header_bg": "#313244",
+    "header_fg": "#cdd6f4",
+    "top5_indicator": "#a6e3a1",
+    "grid_line": "#313244"
+  },
+  "status": {
+    "connected": "#a6e3a1",
+    "disconnected": "#f38ba8",
+    "connecting": "#f9e2af",
+    "failed": "#fab387",
+    "background": "#181825",
+    "foreground": "#cdd6f4"
+  },
+  "log": {
+    "background": "#11111b",
+    "foreground": "#cdd6f4",
+    "timestamp": "#6c7086",
+    "error": "#f38ba8",
+    "info": "#89b4fa",
+    "success": "#a6e3a1"
+  },
+  "dialog": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "input_background": "#313244",
+    "input_foreground": "#cdd6f4",
+    "input_border": "#45475a",
+    "input_focus_border": "#89b4fa"
+  },
+  "font": {
+    "family": "Segoe UI",
+    "size_base": 10,
+    "size_header": 12,
+    "size_title": 14,
+    "size_log": 9
+  },
+  "margins": {
+    "inner": 8,
+    "outer": 12,
+    "widget_gap": 6,
+    "toolbar_height": 40,
+    "status_height": 32,
+    "log_height": 160
+  }
+}

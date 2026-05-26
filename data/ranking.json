@@ -1,0 +1,11 @@
+{
+  "weights": {
+    "ping": 0.60,
+    "uptime": 0.25,
+    "site_ping": 0.15
+  },
+  "ping_max_ms": 500,
+  "ping_min_ms": 1,
+  "uptime_max_days": 60,
+  "site_ping_max_ms": 700
+}

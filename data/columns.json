@@ -1,0 +1,15 @@
+{
+  "columns": [
+    {"key": "rank", "header": "#", "width": 30, "align": "center"},
+    {"key": "country", "header": "Country", "width": 120, "align": "left"},
+    {"key": "ip", "header": "IP", "width": 130, "align": "left"},
+    {"key": "ping_ms", "header": "Ping ms", "width": 70, "align": "right"},
+    {"key": "uptime_days", "header": "Uptime", "width": 70, "align": "right"},
+    {"key": "score", "header": "Score", "width": 60, "align": "right"},
+    {"key": "status", "header": "Status", "width": 90, "align": "center"}
+  ],
+  "sort_by": "score",
+  "sort_order": "descending",
+  "top_n_highlight": 5,
+  "display_count": 20
+}

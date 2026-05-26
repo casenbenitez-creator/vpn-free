@@ -1,0 +1,7 @@
+{
+  "ping_interval_minutes": 30,
+  "auto_switch_threshold_percent": 20,
+  "max_auto_switches_per_hour": 3,
+  "connect_timeout_seconds": 30,
+  "reconnect_delay_seconds": 2
+}

@@ -1,0 +1,14 @@
+{
+  "base_url": "https://ipspeed.info/free-openvpn.php",
+  "ovpn_base_url": "https://ipspeed.info/ovpn/",
+  "table_selector": "table.table",
+  "row_selector": "tr",
+  "columns": {
+    "location": 0,
+    "file_link": 1,
+    "uptime": 2,
+    "ping": 3
+  },
+  "link_selector": "a[href$='.ovpn']",
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+}

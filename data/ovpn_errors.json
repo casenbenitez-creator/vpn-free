@@ -1,0 +1,12 @@
+{
+  "1": "OpenVPN: authentication failed",
+  "2": "OpenVPN: server certificate verification failed",
+  "3": "OpenVPN: TAP adapter not available (run as admin?)",
+  "4": "OpenVPN: config file error",
+  "5": "OpenVPN: cannot resolve host",
+  "6": "OpenVPN: TLS key negotiation failed",
+  "7": "OpenVPN: connection timed out",
+  "8": "OpenVPN: socket protection failed",
+  "9": "OpenVPN: private key password failed",
+  "10": "OpenVPN: insufficient privileges (run as admin)"
+}

@@ -299,11 +299,91 @@ Use QSettings with encrypted backend or keyring library.
 
 ### NO Ignoring Subprocess Exit Code
 After OpenVPN subprocess terminates, always check return code.
-Log non-zero exits. Map known codes to user-friendly messages.
+Log non-zero exits. Map known codes to user-friendly messages via `data/ovpn_errors.json`.
 
 ### NO Infinite Retry Loops Without Backoff
 Network retries must use exponential backoff with jitter.
 Max retry count must be capped. Log each retry attempt.
+
+### NO QThread Subclassing — Use Worker + moveToThread
+```python
+# WRONG — overriding QThread.run() is legacy and error-prone
+class MyThread(QThread):
+    def run(self):
+        do_work()
+
+# CORRECT — worker object moved to thread, communicate via signals
+class Worker(QObject):
+    finished = pyqtSignal()
+    def do_work(self):
+        ...
+        self.finished.emit()
+
+thread = QThread()
+worker = Worker()
+worker.moveToThread(thread)
+thread.started.connect(worker.do_work)
+worker.finished.connect(thread.quit)
+```
+
+### NO Orphaned Threads or Subprocesses on Exit
+App must clean up on close:
+- Terminate OpenVPN subprocess (even on crash)
+- Stop all QThread workers gracefully (quit + wait)
+- Cancel pending asyncio tasks
+Use `QApplication.aboutToQuit` signal for cleanup.
+
+### NO Concurrent Connect Attempts
+Only one OpenVPN subprocess may run at a time.
+Attempting connect while already connecting/connected must be rejected.
+Connector must enforce single-instance via state machine lock.
+
+### NO Ping During Active VPN Connection
+Pinging servers while VPN tunnel is active gives false results
+(packets go through tunnel, not direct). Pinger must check connection
+state before running. If connected, disconnect first or skip.
+
+### NO Unbounded Log Widget
+QTextEdit grows forever if lines are never trimmed.
+Cap at N lines (from theme JSON or config), remove oldest when exceeded.
+Use `QTextEdit.blockCount` or manual trim on every append.
+
+### NO Circular Imports Between core/ and ui/
+Services in core/ must never import from ui/.
+Data flows: core emits signals → ui receives and renders.
+If ui needs to call core, use method calls (ui depends on core, never reverse).
+
+### NO Shared Mutable State Without Synchronization
+If multiple threads access the same data (e.g., server list, connection state):
+- Use QMutex / threading.Lock for plain Python objects
+- Use pyqtSignal for cross-thread notification
+- Never assume atomic reads of compound state (ping + uptime + score)
+
+### NO Widget Parent Leaks
+Every widget without a layout parent must receive an explicit parent.
+Orphaned widgets leak memory and may crash on theme switch.
+```python
+# WRONG
+dialog = SettingsDialog()
+# CORRECT
+dialog = SettingsDialog(parent=self)
+```
+
+### NO Partial or Corrupt .ovpn Downloads
+Download can be interrupted. Verify integrity:
+- Check file exists and size > 0
+- Parse must succeed (has at least one `remote` line)
+- Delete and re-download on failure, never keep corrupt files
+
+### NO Caching Without TTL
+Ping results go stale. Cache entries must have TTL (default 15 min).
+Expired entries are discarded and re-pinged.
+Store timestamp with every cached result.
+
+### NO Ignoring Network Interface Changes
+Wi-Fi reconnect or Ethernet plug/unplug invalidates current connection.
+Monitor `QNetworkConfigurationManager` or poll adapter state.
+On interface change: if connected, transition to DISCONNECTED + alert user.
 
 ### Syntax Check After Every Edit
 `python -m py_compile <file>` — mandatory.
