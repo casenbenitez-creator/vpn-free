@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<YogaDnsProfile file_format="1" product_id="1" product_min_version="127000">
+	<Settings ignore_rule_if_interface_down="1" blockTcpPort53="1" clearDnsCache="1" ttlMin="0" ttlMax="2147483647" captivePortalDetection="0" interceptOthers="0">
+		<DnsChecker testTarget="iana.org" testsPerTime="15" importUrls="https://yogadns.com/resolvers/resolvers.md
+https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md
+https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md
+" />
+	</Settings>
+	<Rule name="Default" enabled="1" dnssec_local_validation="0" dnssec_reject_unsigned="0" hostnames="*" action="process_server" action_id="1001" interface_id="" interface_id_type="id" interface_name="" />
+	<DnsServer id="1001" name="Xbox DNS DoH" protocol="doh" af="2" ip="111.88.96.50" dnssec_supported="0" doh_host_name="xbox-dns.ru" doh_path="/dns-query" />
+	<DnsServer id="1002" name="Xbox DNS DoT" protocol="dot" af="2" ip="111.88.96.50" dnssec_supported="0" dot_host_name="xbox-dns.ru" />
+	<DnsServer id="1003" name="Xbox DNS Primary" protocol="plain" af="2" ip="111.88.96.50" dnssec_supported="0" />
+	<DnsServer id="1004" name="Xbox DNS Secondary" protocol="plain" af="2" ip="111.88.96.51" dnssec_supported="0" />
+</YogaDnsProfile>
